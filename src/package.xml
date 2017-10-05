@@ -5,23 +5,16 @@
         <members>DatasetDetailsResponse</members>
         <members>DatasetUploadResponse</members>
         <members>EinsteinAPI</members>
-        <members>EinsteinServices</members>
-        <members>FindIntentController</members>
-        <members>FindSentimentController</members>
         <members>HttpFormBuilder</members>
         <members>JWT</members>
         <members>JWTBearerFlow</members>
         <members>PredictImageController</members>
         <members>PredictionResponse</members>
-        <members>SentimentAnalysisResponse</members>
         <members>TrainDatasetResponse</members>
-        <members>TrainingStatusResponse</members>
         <members>VisionTrainingStatusResponse</members>
         <name>ApexClass</name>
     </types>
     <types>
-        <members>FindIntent</members>
-        <members>FindSentiment</members>
         <members>PredictImage</members>
         <members>VisionUploader</members>
         <name>ApexPage</name>
@@ -31,22 +24,10 @@
         <name>CustomApplication</name>
     </types>
     <types>
-        <members>Activity.Sentiment__c</members>
-        <members>Einstein_API_Settings__c.Intent_Dataset_CSV__c</members>
-        <members>Einstein_API_Settings__c.Intent_Dataset_Details_Endpoint__c</members>
-        <members>Einstein_API_Settings__c.Intent_Dataset_Folder_Id__c</members>
-        <members>Einstein_API_Settings__c.Intent_Dataset_Training_Status_Endpoint__c</members>
-        <members>Einstein_API_Settings__c.Intent_Model_Id__c</members>
-        <members>Einstein_API_Settings__c.Intent_Train_Dataset_Endpoint__c</members>
-        <members>Einstein_API_Settings__c.Intent_Upload_Dataset_Endpoint__c</members>
-        <members>Einstein_API_Settings__c.Predict_Intent_Endpoint__c</members>
         <members>Einstein_API_Settings__c.Predict_Vision_Endpoint__c</members>
         <members>Einstein_API_Settings__c.Registered_Email__c</members>
-        <members>Einstein_API_Settings__c.Sentiment_Endpoint__c</members>
-        <members>Einstein_API_Settings__c.Sentiment_Model_Id__c</members>
         <members>Einstein_API_Settings__c.Token_Endpoint__c</members>
         <members>Einstein_API_Settings__c.Token_Expiration_Seconds__c</members>
-        <members>Einstein_API_Settings__c.User_Uploaded_Intent_Dataset_CSV__c</members>
         <members>Einstein_API_Settings__c.User_Uploaded_Vision_Dataset_Image__c</members>
         <members>Einstein_API_Settings__c.Vision_Dataset_Details_Endpoint__c</members>
         <members>Einstein_API_Settings__c.Vision_Dataset_Folder_Id__c</members>
@@ -67,14 +48,12 @@
     </types>
     <types>
         <members>Einstein_API_Settings__c</members>
-        <members>Google_Settings__c</members>
         <members>Trained_Models__c</members>
         <members>Vision_Dataset__c</members>
         <members>Vision_Sample__c</members>
         <name>CustomObject</name>
     </types>
     <types>
-        <members>Einstein_Intent</members>
         <members>Einstein_Vision</members>
         <members>Vision_Dataset__c</members>
         <members>Vision_Sample__c</members>
@@ -91,13 +70,11 @@
         <name>ListView</name>
     </types>
     <types>
-        <members>PVS_API</members>
-        <members>Sentiment</members>
+        <members>Einstein_API</members>
         <name>RemoteSiteSetting</name>
     </types>
     <types>
         <members>EinsteinCSS</members>
-        <members>FindIntentJS</members>
         <members>PredictImageJS</members>
         <name>StaticResource</name>
     </types>
