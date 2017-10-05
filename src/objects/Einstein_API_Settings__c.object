@@ -3,71 +3,6 @@
     <customSettingsType>Hierarchy</customSettingsType>
     <enableFeeds>false</enableFeeds>
     <fields>
-        <fullName>Intent_Dataset_CSV__c</fullName>
-        <externalId>false</externalId>
-        <label>Intent Dataset CSV</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
-    </fields>
-    <fields>
-        <fullName>Intent_Dataset_Details_Endpoint__c</fullName>
-        <externalId>false</externalId>
-        <label>Intent Dataset Details Endpoint</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
-    </fields>
-    <fields>
-        <fullName>Intent_Dataset_Folder_Id__c</fullName>
-        <externalId>false</externalId>
-        <label>Intent Dataset Folder Id</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
-    </fields>
-    <fields>
-        <fullName>Intent_Dataset_Training_Status_Endpoint__c</fullName>
-        <externalId>false</externalId>
-        <label>Intent Dataset Training Status Endpoint</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
-    </fields>
-    <fields>
-        <fullName>Intent_Model_Id__c</fullName>
-        <externalId>false</externalId>
-        <label>Intent Model Id</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Intent_Train_Dataset_Endpoint__c</fullName>
-        <externalId>false</externalId>
-        <label>Intent Train Dataset Endpoint</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
-    </fields>
-    <fields>
-        <fullName>Intent_Upload_Dataset_Endpoint__c</fullName>
-        <externalId>false</externalId>
-        <label>Intent Upload Dataset Endpoint</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
-    </fields>
-    <fields>
-        <fullName>Predict_Intent_Endpoint__c</fullName>
-        <externalId>false</externalId>
-        <label>Predict Intent Endpoint</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
-    </fields>
     <fields>
         <fullName>Predict_Vision_Endpoint__c</fullName>
         <externalId>false</externalId>
@@ -83,24 +18,6 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Email</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Sentiment_Endpoint__c</fullName>
-        <externalId>false</externalId>
-        <label>Sentiment Endpoint</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
-    </fields>
-    <fields>
-        <fullName>Sentiment_Model_Id__c</fullName>
-        <externalId>false</externalId>
-        <label>Sentiment Model Id</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -121,14 +38,6 @@
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>User_Uploaded_Intent_Dataset_CSV__c</fullName>
-        <externalId>false</externalId>
-        <label>User Uploaded Intent Dataset CSV</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
     </fields>
     <fields>
         <fullName>User_Uploaded_Vision_Dataset_Image__c</fullName>
