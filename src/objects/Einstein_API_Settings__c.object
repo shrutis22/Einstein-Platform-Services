@@ -3,7 +3,6 @@
     <customSettingsType>Hierarchy</customSettingsType>
     <enableFeeds>false</enableFeeds>
     <fields>
-    <fields>
         <fullName>Predict_Vision_Endpoint__c</fullName>
         <externalId>false</externalId>
         <label>Predict Vision Endpoint</label>
