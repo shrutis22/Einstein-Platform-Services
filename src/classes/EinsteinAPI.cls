@@ -106,6 +106,30 @@ public class EinsteinAPI {
         return access_token;
     }
     
+    /**
+     * This method is created to build
+     * Http Requests.
+     * 
+     * @param   method          The method of the Http Call
+     * @param   endpoint        The endpoint to which the Http Call has to be made
+     * 
+     * @return  HttpRequest     Instance of the HttpRequest class
+     **/
+    private HttpRequest buildRequest( String method, String endpoint ) {
+        HttpRequest httpReq = new HttpRequest();
+        
+        httpReq.setMethod( method );
+        httpReq.setEndpoint( endpoint );
+        
+        httpReq.setHeader( 'Authorization', 'Bearer ' + getAccessToken() );
+        httpReq.setHeader( 'Cache-Control', 'no-cache' );
+        httpReq.setHeader( 'Content-Type', HttpFormBuilder.GetContentType() );
+        
+        httpReq.setTimeout( 120000 );
+        
+        return httpReq;
+    }
+    
     ////////////////////////////////
     //Einstein Vision API Methods //
     ////////////////////////////////
