@@ -1,0 +1,177 @@
+<apex:page controller="PredictImageController" standardStylesheets="false" sidebar="false">
+    <!--Stylesheets-->
+    <apex:slds />
+    <apex:stylesheet value="{!$Resource.EinsteinCSS}" />
+    
+    <!--Modal-->
+    <div id="mdlStatus" style="display: none">
+        <section role="dialog" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 id="mdlHeader" class="slds-text-heading_medium slds-hyphenate"></h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium slds-p-bottom_x-large">
+                    <p id="statusMsg"></p>
+                    <div id="mdlSpinner">
+                        <div role="status" class="slds-spinner slds-spinner_brand slds-spinner_medium slds-m-top_x-large">
+                            <span class="slds-assistive-text">Loading</span>
+                            <div class="slds-spinner__dot-a"></div>
+                            <div class="slds-spinner__dot-b"></div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button id="btnClose" class="slds-button slds-button_neutral">Continue...</button>
+                </footer>
+            </div>
+        </section>
+        <div id="mdlBackDrop" class="slds-backdrop slds-backdrop_open"></div>
+    </div>
+    
+    <!--Modal-->
+    <div id="mdlVisionDatasetUploader" style="display: none">
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header slds-modal__header_empty">
+                    <button id="btnVisionDSUploderClose" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                        <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#close')}" />
+                        </svg>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                </header>
+                <div class="slds-vision slds-modal__content slds-p-around_medium">
+                    <iframe id="iframeDSUploader" frameborder="none" width="100%" height="300px"></iframe>
+                </div>
+            </div>
+        </section>
+        <div id="mdlVisionDSUploaderBackDrop" class="slds-backdrop slds-backdrop_open"></div>
+    </div>
+    
+    <!--Page Header-->
+    <div class="slds-page-header slds-m-bottom_large">
+        <div class="slds-media">
+            <div class="slds-media__figure">
+                <span class="slds-icon_container slds-icon-standard-account">
+                    <svg class="slds-icon" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/custom-sprite/svg/symbols.svg#custom9')}"></use>
+                    </svg>
+                </span>
+            </div>
+            <div class="slds-media__body">
+                <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Einstein Vision API">Salesforce Einstein Vision API</h1>
+                <p class="slds-text-body_small slds-line-height_reset">Try it out</p>
+            </div>
+        </div>
+    </div>
+    
+    <!--Intro-->
+    <div class="slds-box slds-theme_default slds-m-bottom_medium">
+        <p>
+            In simple words, Einstein Vision API uses <strong>machine learning</strong> (pattern recognition) to recognize and identify images.
+        </p>
+    </div>
+    
+    <!--Step 1-->
+    <div class="slds-section-title--divider"><span class="slds-badge">1</span> Upload the Dataset</div>
+    <div class="slds-form--stacked slds-p-around--medium slds-m-bottom--x-small">
+        <div class="slds-box slds-theme_default slds-m-bottom_medium">
+            <p>
+                There should be at least <strong>40</strong> images per label. Each image should be less than <strong>1 MB</strong> in size and the resolution should not exceed <strong>2000 x 2000 pixels</strong>. The directory structure should resemble the below format :
+                <ul class="slds-list_dotted">
+                    <li>
+                        Zipped File (max size: <code>20 MB</code>)
+                        <ul class="slds-list_dotted">
+                            <li>
+                                Folder: <strong>Vision Images</strong>
+                                <ul class="slds-list_dotted">
+                                    <li>
+                                        Folder: <strong>Mountains</strong> (this also represents the name of the <strong>Label</strong>)
+                                        <ol class="slds-list_ordered">
+                                            <li>Mountain 1.jpeg (max size: <code>1 MB</code>; max resolution: <code>2000 x 2000 Megapixels</code>)</li>
+                                            <li>Mountain 2.jpeg</li>
+                                            <li>....</li>
+                                            <li value="40">Mountain 40.jpeg</li>
+                                        </ol>
+                                    </li>
+                                    <li>
+                                        Folder: <strong>Beaches</strong>
+                                        <ol class="slds-list_ordered">
+                                            <li>Beach 1.jpeg (max size: <code>1 MB</code>; max resolution: <code>2000 x 2000 Megapixels</code>)</li>
+                                            <li>Beach 2.jpeg</li>
+                                            <li>....</li>
+                                            <li value="40">Beach 40.jpeg</li>
+                                        </ol>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </div>
+        <div class="slds-form-element">
+            <div class="slds-form-element__control">
+                <button type="button" id="btnUploadMyDS" class="slds-button slds-button_brand">Upload My Dataset</button>
+            </div>
+            <div class="slds-form-element__control">
+            </div>
+        </div>
+    </div>
+    
+    <!--Step 2-->
+    <div class="slds-section-title--divider"><span class="slds-badge">2</span> Create the Model and Train</div>
+    <div class="slds-form--stacked slds-p-around--medium slds-m-bottom--x-small">
+        <div class="slds-form-element">
+            <div class="slds-form-element__control">
+                <div class="slds-box slds-theme_default slds-m-bottom_medium">
+                    <p>
+                        This is all about creating a <strong>Model</strong> from the uploaded Dataset and then <strong>Training</strong> the AI.
+                    </p>
+                </div>
+                <button type="button" id="btnTrainDS" class="slds-button slds-button_brand" disabled="true">Start Training</button>
+            </div>
+        </div>
+    </div>
+    
+    <!--Step 3-->
+    <div class="slds-section-title--divider"><span class="slds-badge">3</span> Upload the Image for Prediction</div>
+    <div class="slds-form--stacked slds-p-around--medium slds-m-bottom--x-small">
+        <div class="slds-form-element">
+            <div class="slds-form-element__control">
+                <div class="slds-grid slds-grid_pull-padded-xx-large">
+                    <div class="slds-col">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Use the Newly Created Model</label>
+                        </div>
+                        <button type="button" id="btnPredictImg" class="slds-button slds-button_brand" disabled="true">Upload Sample Image</button>
+                    </div>
+                    <div class="slds-col">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="slctModel">Select a Pre-existing Model</label>
+                            <div class="slds-form-element__control">
+                                <select id="slctModel" class="slds-select">
+                                    <apex:repeat value="{!trainedModels}" var="model">
+                                        <option value="{!model.Model_Id__c}">{!model.Name}</option>
+                                    </apex:repeat>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="button" id="btnPredictExistModel" class="slds-button slds-button_brand slds-m-top_x-small">Upload Sample Image</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--Scripts-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{!$Resource.PredictImageJS}"></script>
+    <script>
+        var config = {
+            visionUploaderLink : "{!$Page.VisionUploader}"
+        };
+        
+        PredictImage.init( config );
+    </script>
+</apex:page>

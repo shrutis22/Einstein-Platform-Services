@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Intent_Dataset_CSV__c</fullName>
+        <externalId>false</externalId>
+        <label>Intent Dataset CSV</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Intent_Dataset_Details_Endpoint__c</fullName>
+        <externalId>false</externalId>
+        <label>Intent Dataset Details Endpoint</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Intent_Dataset_Folder_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Intent Dataset Folder Id</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Intent_Dataset_Training_Status_Endpoint__c</fullName>
+        <externalId>false</externalId>
+        <label>Intent Dataset Training Status Endpoint</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Intent_Model_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Intent Model Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Intent_Train_Dataset_Endpoint__c</fullName>
+        <externalId>false</externalId>
+        <label>Intent Train Dataset Endpoint</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Intent_Upload_Dataset_Endpoint__c</fullName>
+        <externalId>false</externalId>
+        <label>Intent Upload Dataset Endpoint</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Predict_Intent_Endpoint__c</fullName>
+        <externalId>false</externalId>
+        <label>Predict Intent Endpoint</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Predict_Vision_Endpoint__c</fullName>
+        <externalId>false</externalId>
+        <label>Predict Vision Endpoint</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Registered_Email__c</fullName>
+        <externalId>false</externalId>
+        <label>Registered Email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sentiment_Endpoint__c</fullName>
+        <externalId>false</externalId>
+        <label>Sentiment Endpoint</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Sentiment_Model_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Sentiment Model Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Token_Endpoint__c</fullName>
+        <externalId>false</externalId>
+        <label>Token Endpoint</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Token_Expiration_Seconds__c</fullName>
+        <externalId>false</externalId>
+        <label>Token Expiration Seconds</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>User_Uploaded_Intent_Dataset_CSV__c</fullName>
+        <externalId>false</externalId>
+        <label>User Uploaded Intent Dataset CSV</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>User_Uploaded_Vision_Dataset_Image__c</fullName>
+        <externalId>false</externalId>
+        <label>User Uploaded Vision Dataset Image</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Vision_Dataset_Details_Endpoint__c</fullName>
+        <externalId>false</externalId>
+        <label>Vision Dataset Details Endpoint</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Vision_Dataset_Folder_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Vision Dataset Folder Id</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Vision_Dataset_Training_Status_Endpoint__c</fullName>
+        <externalId>false</externalId>
+        <label>Vision Dataset Training Status Endpoint</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Vision_Model_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Vision Model Id</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Vision_Train_Dataset_Endpoint__c</fullName>
+        <externalId>false</externalId>
+        <label>Vision Train Dataset Endpoint</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Vision_Upload_Dataset_Endpoint__c</fullName>
+        <externalId>false</externalId>
+        <label>Vision Upload Dataset Endpoint</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Vision_User_Predict_Image__c</fullName>
+        <externalId>false</externalId>
+        <label>Vision User Predict Image</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <label>Einstein API Settings</label>
+    <visibility>Public</visibility>
+</CustomObject>

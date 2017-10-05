@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>DatasetDetailsResponse</members>
+        <members>DatasetUploadResponse</members>
+        <members>EinsteinAPI</members>
+        <members>EinsteinServices</members>
+        <members>FindIntentController</members>
+        <members>FindSentimentController</members>
+        <members>HttpFormBuilder</members>
+        <members>JWT</members>
+        <members>JWTBearerFlow</members>
+        <members>PredictImageController</members>
+        <members>PredictionResponse</members>
+        <members>SentimentAnalysisResponse</members>
+        <members>TrainDatasetResponse</members>
+        <members>TrainingStatusResponse</members>
+        <members>VisionTrainingStatusResponse</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>FindIntent</members>
+        <members>FindSentiment</members>
+        <members>PredictImage</members>
+        <members>VisionUploader</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>Einstein_API_Settings__c</members>
+        <members>Trained_Models__c</members>
+        <members>Vision_Dataset__c</members>
+        <members>Vision_Sample__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Vision_Dataset__c-Einstein Dataset Layout</members>
+        <members>Vision_Sample__c-Einstein Sample Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>EinsteinCSS</members>
+        <members>FindIntentJS</members>
+        <members>PredictImageJS</members>
+        <name>StaticResource</name>
+    </types>
+    <version>36.0</version>
+</Package>
