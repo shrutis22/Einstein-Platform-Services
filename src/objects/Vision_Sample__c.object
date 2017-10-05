@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -49,6 +45,7 @@
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
     <enableFeeds>true</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>false</enableReports>
@@ -70,4 +67,5 @@
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <startsWith>Vowel</startsWith>
+    <visibility>Public</visibility>
 </CustomObject>
