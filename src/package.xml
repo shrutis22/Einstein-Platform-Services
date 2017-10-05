@@ -36,12 +36,6 @@
         <members>Einstein_API_Settings__c.Vision_Train_Dataset_Endpoint__c</members>
         <members>Einstein_API_Settings__c.Vision_Upload_Dataset_Endpoint__c</members>
         <members>Einstein_API_Settings__c.Vision_User_Predict_Image__c</members>
-        <members>Google_Settings__c.Client_Id__c</members>
-        <members>Google_Settings__c.Developer_Key__c</members>
-        <members>Google_Settings__c.Folder_Id__c</members>
-        <members>Google_Settings__c.Scopes__c</members>
-        <members>Google_Settings__c.Service_Account_Id__c</members>
-        <members>Google_Settings__c.Token_Endpoint__c</members>
         <members>Trained_Models__c.Model_Id__c</members>
         <members>Trained_Models__c.Type__c</members>
         <name>CustomField</name>
