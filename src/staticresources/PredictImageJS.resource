@@ -284,7 +284,7 @@ var PredictImage = {
             }
         },
         handleExistingModelChange : function() {
-            if( $( "#slctModel" ).val() ) {
+            if( $( "#slctModel" ).val() !== "0" ) {
                 PredictImage.helpers.enableButton( "btnPredictExistModel", true );
             }
             else {
