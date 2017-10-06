@@ -132,6 +132,8 @@ var PredictImage = {
                                 PredictImage.helpers.showCompletion( result.status, "The Training process has been completed successfully. You can now try out the Prediction." );
                                 
                                 PredictImage.helpers.enableButton( "btnPredictImg", true );
+                                
+                                PredictImage.helpers.enableButton( "btnSaveModel", true );
                             }
                         }
                     );
@@ -181,11 +183,11 @@ var PredictImage = {
             PredictImageController.uploadVisionDataset(
                 function( result, event ) {
                     if( result.status ) {
-                        var url =  PredictImage.variables.config.visionUploaderLink + "?dsid=" + result.dsId;
+                        var url =  PredictImage.variables.config.visionUploaderLink + "?dsid=" + result.data;
                         
                         PredictImage.helpers.showUploadContentModal( url );
                         
-                        PredictImage.actions.getDownloadUrl( result.dsId );
+                        PredictImage.actions.getDownloadUrl( result.data );
                     }
                 }
             );
@@ -194,11 +196,11 @@ var PredictImage = {
             PredictImageController.uploadVisionSample(
                 function( result, event ) {
                     if( result.status ) {
-                        var url =  PredictImage.variables.config.visionUploaderLink + "?dsid=" + result.dsId;
+                        var url =  PredictImage.variables.config.visionUploaderLink + "?dsid=" + result.data;
                         
                         PredictImage.helpers.showUploadContentModal( url );
                         
-                        PredictImage.actions.getDownloadUrl( result.dsId );
+                        PredictImage.actions.getDownloadUrl( result.data );
                     }
                 }
             );
@@ -242,6 +244,52 @@ var PredictImage = {
                 }
                 ,1000
             );
+        },
+        loadSettings : function() {
+            var userEmail = prompt( "Please specify the email address that you used for signing up Einstein Platform Services:" );
+            
+            if( userEmail !== null ) {
+                PredictImageController.loadSettings(
+                    userEmail,
+                    function( result, event ) {
+                        alert( result.data );
+                        
+                        if( result.status ) {
+                            location.reload();
+                        }
+                    }
+                );
+            }
+            else {
+                alert( "Sorry! The settings can be created only after you specify a valid Email Id." );
+            }
+        },
+        saveTrainedModel : function() {
+            var modelName = prompt( "Specify a Name for your Model(eg: Mountains vs Beaches):" );
+            
+            if( modelName !== null ) {
+                PredictImageController.saveTrainedModel(
+                    modelName,
+                    function( result, event ) {
+                        if( !result.status ) {
+                            alert( result.data );
+                        }
+                        else {
+                            var $option = $( "<option/>" ).attr( "value", PredictImage.variables.modelId ).html( modelName );
+                            
+                            $( "#slctModel" ).append( $option );
+                        }
+                    }
+                );
+            }
+        },
+        handleExistingModelChange : function() {
+            if( $( "#slctModel" ).val() ) {
+                PredictImage.helpers.enableButton( "btnPredictExistModel", true );
+            }
+            else {
+                PredictImage.helpers.enableButton( "btnPredictExistModel", false );
+            }
         }
     },
     eventHandlers : {
@@ -268,6 +316,15 @@ var PredictImage = {
         },
         uploadVisionSample : function() {
             PredictImage.actions.uploadVisionSample();
+        },
+        loadSettings : function() {
+            PredictImage.actions.loadSettings();
+        },
+        saveTrainedModel : function() {
+            PredictImage.actions.saveTrainedModel();
+        },
+        handleExistingModelChange : function() {
+            PredictImage.actions.handleExistingModelChange();
         }
     },
     init : function( config ) {
@@ -322,6 +379,25 @@ var PredictImage = {
         $( "#btnVisionDSUploderClose" ).click(
             function() {
                 PredictImage.helpers.hideUploadModal( true );
+            }
+        );
+        
+        $( "#btnLoadSettings" ).click(
+            function() {
+                PredictImage.eventHandlers.loadSettings();
+            }
+        );
+        
+        $( "#btnSaveModel" ).click(
+            function() {
+                PredictImage.eventHandlers.saveTrainedModel();
+            }
+        );
+        
+        $( "#slctModel" ).on(
+            "change",
+            function() {
+                PredictImage.eventHandlers.handleExistingModelChange();
             }
         );
     }

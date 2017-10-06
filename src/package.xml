@@ -30,7 +30,6 @@
         <members>Einstein_API_Settings__c.Token_Expiration_Seconds__c</members>
         <members>Einstein_API_Settings__c.User_Uploaded_Vision_Dataset_Image__c</members>
         <members>Einstein_API_Settings__c.Vision_Dataset_Details_Endpoint__c</members>
-        <members>Einstein_API_Settings__c.Vision_Dataset_Folder_Id__c</members>
         <members>Einstein_API_Settings__c.Vision_Dataset_Training_Status_Endpoint__c</members>
         <members>Einstein_API_Settings__c.Vision_Model_Id__c</members>
         <members>Einstein_API_Settings__c.Vision_Train_Dataset_Endpoint__c</members>

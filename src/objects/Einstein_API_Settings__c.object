@@ -55,14 +55,6 @@
         <type>TextArea</type>
     </fields>
     <fields>
-        <fullName>Vision_Dataset_Folder_Id__c</fullName>
-        <externalId>false</externalId>
-        <label>Vision Dataset Folder Id</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
-    </fields>
-    <fields>
         <fullName>Vision_Dataset_Training_Status_Endpoint__c</fullName>
         <externalId>false</externalId>
         <label>Vision Dataset Training Status Endpoint</label>

@@ -59,8 +59,15 @@
                 </span>
             </div>
             <div class="slds-media__body">
-                <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Einstein Vision API">Salesforce Einstein Vision API</h1>
-                <p class="slds-text-body_small slds-line-height_reset">Try it out</p>
+                <div class="slds-grid">
+                    <div class="slds-col">
+                        <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Einstein Vision API">Salesforce Einstein Vision API</h1>
+                        <p class="slds-text-body_small slds-line-height_reset">Try it out</p>
+                    </div>
+                    <div class="slds-col slds-text-align--right">
+                        <button type="button" id="btnLoadSettings" style="{!IF(ISBLANK($Setup.Einstein_API_Settings__c.Registered_Email__c),'','display:none')}" class="slds-button slds-button_brand">Load Settings</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -112,9 +119,15 @@
         </div>
         <div class="slds-form-element">
             <div class="slds-form-element__control">
-                <button type="button" id="btnUploadMyDS" class="slds-button slds-button_brand">Upload My Dataset</button>
+                <apex:outputPanel rendered="{!ISBLANK($Setup.Einstein_API_Settings__c.Registered_Email__c)}" layout="none">
+                    <button type="button" id="btnUploadMyDS" class="slds-button slds-button_brand" disabled="true">Upload My Dataset</button>
+                </apex:outputPanel>
+                
+                <apex:outputPanel rendered="{!NOT(ISBLANK($Setup.Einstein_API_Settings__c.Registered_Email__c))}" layout="none">
+                    <button type="button" id="btnUploadMyDS" class="slds-button slds-button_brand">Upload My Dataset</button>
+                </apex:outputPanel>
             </div>
-            <div class="slds-form-element__control">
+            <div class="slds-form-element__control"> 
             </div>
         </div>
     </div>
@@ -130,6 +143,7 @@
                     </p>
                 </div>
                 <button type="button" id="btnTrainDS" class="slds-button slds-button_brand" disabled="true">Start Training</button>
+                <button class="slds-button slds-button_brand" id="btnSaveModel" type="button" disabled="true">Save Model</button>
             </div>
         </div>
     </div>
@@ -157,7 +171,7 @@
                                 </select>
                             </div>
                         </div>
-                        <button type="button" id="btnPredictExistModel" class="slds-button slds-button_brand slds-m-top_x-small">Upload Sample Image</button>
+                        <button type="button" id="btnPredictExistModel" class="slds-button slds-button_brand slds-m-top_x-small" disabled="true">Upload Sample Image</button>
                     </div>
                 </div>
             </div>
