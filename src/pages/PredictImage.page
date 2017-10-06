@@ -165,6 +165,7 @@
                             <label class="slds-form-element__label" for="slctModel">Select a Pre-existing Model</label>
                             <div class="slds-form-element__control">
                                 <select id="slctModel" class="slds-select">
+                                    <option>--Select--</option>
                                     <apex:repeat value="{!trainedModels}" var="model">
                                         <option value="{!model.Model_Id__c}">{!model.Name}</option>
                                     </apex:repeat>
