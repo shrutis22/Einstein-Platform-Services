@@ -1,6 +1,6 @@
 @RestResource( urlMapping = '/tesselservices/*' )
 global class TesselServices {
-    public static final String MODEL_ID = 'ACQMNLGLTFA6U75P47FGLMO2UY';
+    public static final String MODEL_ID = 'INSERT MODEL ID HERE';
     
     @HttpPost
     global static String upload() {
