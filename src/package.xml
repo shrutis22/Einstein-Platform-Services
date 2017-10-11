@@ -10,6 +10,7 @@
         <members>JWTBearerFlow</members>
         <members>PredictImageController</members>
         <members>PredictionResponse</members>
+        <members>TesselServices</members>
         <members>TrainDatasetResponse</members>
         <members>VisionTrainingStatusResponse</members>
         <name>ApexClass</name>
