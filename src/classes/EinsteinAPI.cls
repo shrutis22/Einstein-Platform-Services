@@ -298,4 +298,31 @@ public class EinsteinAPI {
         
         return resp;
     }
+    
+    public PredictionResponse predictImage( String modelId, String imgUrl ) {
+        String endpoint = predictVisionEndpoint;
+        
+        HttpRequest httpReq = buildRequest( 'POST', endpoint );
+        
+        String mutipartFormData = '';
+        mutipartFormData += HttpFormBuilder.WriteBoundary();
+        mutipartFormData += HttpFormBuilder.WriteBodyParameter( 'modelId', modelId );
+        mutipartFormData += HttpFormBuilder.WriteBoundary();
+        mutipartFormData += HttpFormBuilder.WriteBodyParameter( 'sampleLocation', imgUrl );
+        mutipartFormData += HttpFormBuilder.WriteBoundary( NULL );
+        
+        Blob formBlob = EncodingUtil.base64Decode( mutipartFormData );
+        
+        httpReq.setBodyAsBlob( formBlob );
+
+        Http http = new Http();
+        
+        HTTPResponse httpRes = http.send( httpReq );
+        
+        PredictionResponse resp = new PredictionResponse();
+        
+        resp = ( PredictionResponse ) JSON.deserialize( httpRes.getBody(), PredictionResponse.class );
+        
+        return resp;
+    }
 }
