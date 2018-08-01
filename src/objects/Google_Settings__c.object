@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Folder_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Folder Id</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Scopes__c</fullName>
+        <externalId>false</externalId>
+        <label>Scopes</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Service_Account_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Service Account Id</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Token_Endpoint__c</fullName>
+        <externalId>false</externalId>
+        <label>Token Endpoint</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <label>Google Settings</label>
+    <visibility>Public</visibility>
+</CustomObject>
