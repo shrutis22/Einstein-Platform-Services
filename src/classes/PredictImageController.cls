@@ -12,7 +12,7 @@ public class PredictImageController {
     
     public class Response {
         public Boolean status;
-        public String data;
+        public Id dsId;
     }
     
     public PredictImageController() {
@@ -157,7 +157,7 @@ public class PredictImageController {
             
             Response resp   = new Response();
             resp.status     = TRUE;
-            resp.data       = visionDS.Id;
+            resp.dsId       = visionDS.Id;
             
             return resp;
         }
@@ -180,7 +180,7 @@ public class PredictImageController {
             
             Response resp   = new Response();
             resp.status     = TRUE;
-            resp.data       = visionSample.Id;
+            resp.dsId       = visionSample.Id;
             
             return resp;
         }
@@ -234,63 +234,5 @@ public class PredictImageController {
         }
         
         return NULL;
-    }
-    
-    @RemoteAction
-    public static Response loadSettings( String userEmail ) {
-        Einstein_API_Settings__c einsteinAPISettings = Einstein_API_Settings__c.getInstance( UserInfo.getOrganizationId() );
-        
-        einsteinAPISettings.Predict_Vision_Endpoint__c                  = 'https://api.einstein.ai/v2/vision/predict';
-        einsteinAPISettings.Registered_Email__c                         = userEmail;
-        einsteinAPISettings.Token_Endpoint__c                           = 'https://api.einstein.ai/v1/oauth2/token';
-        einsteinAPISettings.Token_Expiration_Seconds__c                 = 3600;
-        einsteinAPISettings.Vision_Dataset_Details_Endpoint__c          = 'https://api.einstein.ai/v2/vision/datasets/#DSID#';
-        einsteinAPISettings.Vision_Dataset_Training_Status_Endpoint__c  = 'https://api.einstein.ai/v2/vision/train/#MODELID#';
-        einsteinAPISettings.Vision_Train_Dataset_Endpoint__c            = 'https://api.einstein.ai/v2/vision/train';
-        einsteinAPISettings.Vision_Upload_Dataset_Endpoint__c           = 'https://api.einstein.ai/v2/vision/datasets/upload';
-        
-        Response resp = new Response();
-        
-        try {
-            UPSERT einsteinAPISettings;
-            
-            resp.status     = TRUE;
-            resp.data       = 'The settings have been saved successfully.';
-        
-            return resp;
-        }
-        catch( Exception ex ) {
-            resp.status     = FALSE;
-            resp.data       = 'An error has occurred. Error - ' + ex.getMessage();
-            
-            return resp;
-        }
-    }
-    
-    @RemoteAction
-    public static Response saveTrainedModel( String modelName ) {
-        Einstein_API_Settings__c einsteinAPISettings = Einstein_API_Settings__c.getInstance( UserInfo.getOrganizationId() );
-        
-        Trained_Models__c trainedModels = new Trained_Models__c();
-        
-        trainedModels.Name          = modelName;
-        trainedModels.Model_Id__c   = einsteinAPISettings.Vision_Model_Id__c;
-        trainedModels.Type__c       = 'Vision';
-        
-        Response resp = new Response();
-        
-        try {
-            INSERT trainedModels;
-            
-            resp.status     = TRUE;
-            resp.data       = 'The Trained Model has been saved successfully.';
-            return resp;
-        }
-        catch( Exception ex ) {
-            resp.status     = FALSE;
-            resp.data       = 'An error has occurred. Error - ' + ex.getMessage();
-            
-            return resp;
-        }
     }
 }

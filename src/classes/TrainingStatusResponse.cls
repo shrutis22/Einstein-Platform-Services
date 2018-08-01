@@ -1,4 +1,4 @@
-public class VisionTrainingStatusResponse {
+public class TrainingStatusResponse {
     public static void consumeObject(JSONParser parser) {
         Integer depth = 0;
         do {
@@ -13,9 +13,6 @@ public class VisionTrainingStatusResponse {
         } while (depth > 0 && parser.nextToken() != null);
     }
 
-    public VisionTrainingStatusResponse() {
-        
-    }
 
     public Integer datasetId {get;set;} 
     public Integer datasetVersionId {get;set;} 
@@ -32,7 +29,7 @@ public class VisionTrainingStatusResponse {
     public TrainStats trainStats {get;set;} 
     public String modelType {get;set;} 
 
-    public VisionTrainingStatusResponse(JSONParser parser) {
+    public TrainingStatusResponse(JSONParser parser) {
         while (parser.nextToken() != JSONToken.END_OBJECT) {
             if (parser.getCurrentToken() == JSONToken.FIELD_NAME) {
                 String text = parser.getText();
@@ -66,34 +63,8 @@ public class VisionTrainingStatusResponse {
                     } else if (text == 'modelType') {
                         modelType = parser.getText();
                     } else {
-                        System.debug(LoggingLevel.WARN, 'VisionTrainingStatusResponse consuming unrecognized property: '+text);
+                        System.debug(LoggingLevel.WARN, 'TrainingStatusResponse consuming unrecognized property: '+text);
                         consumeObject(parser);
-                    }
-                }
-            }
-        }
-    }
-    
-    public class Transforms {
-        public Boolean toFlip {get;set;} 
-        public Boolean toRotate {get;set;} 
-        public String cropLocation {get;set;} 
-
-        public Transforms(JSONParser parser) {
-            while (parser.nextToken() != JSONToken.END_OBJECT) {
-                if (parser.getCurrentToken() == JSONToken.FIELD_NAME) {
-                    String text = parser.getText();
-                    if (parser.nextToken() != JSONToken.VALUE_NULL) {
-                        if (text == 'toFlip') {
-                            toFlip = parser.getBooleanValue();
-                        } else if (text == 'toRotate') {
-                            toRotate = parser.getBooleanValue();
-                        } else if (text == 'cropLocation') {
-                            cropLocation = parser.getText();
-                        } else {
-                            System.debug(LoggingLevel.WARN, 'Transforms consuming unrecognized property: '+text);
-                            consumeObject(parser);
-                        }
                     }
                 }
             }
@@ -104,7 +75,7 @@ public class VisionTrainingStatusResponse {
         public Integer labels {get;set;} 
         public Integer examples {get;set;} 
         public String totalTime {get;set;} 
-        public Transforms transforms {get;set;} 
+        public Object transforms {get;set;} 
         public String trainingTime {get;set;} 
         public Boolean earlyStopping {get;set;} 
         public Integer lastEpochDone {get;set;} 
@@ -127,7 +98,7 @@ public class VisionTrainingStatusResponse {
                         } else if (text == 'totalTime') {
                             totalTime = parser.getText();
                         } else if (text == 'transforms') {
-                            transforms = new Transforms(parser);
+                            transforms = parser.getText();
                         } else if (text == 'trainingTime') {
                             trainingTime = parser.getText();
                         } else if (text == 'earlyStopping') {
@@ -156,8 +127,11 @@ public class VisionTrainingStatusResponse {
         }
     }
     
+    public TrainingStatusResponse() {
+        
+    }
     
-    public static VisionTrainingStatusResponse parse(String json) {
-        return new VisionTrainingStatusResponse(System.JSON.createParser(json));
+    public static TrainingStatusResponse parse(String json) {
+        return new TrainingStatusResponse(System.JSON.createParser(json));
     }
 }
