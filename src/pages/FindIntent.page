@@ -1,0 +1,116 @@
+<apex:page controller="FindIntentController" standardStylesheets="false" sidebar="false">
+    <!--Stylesheets-->
+    <apex:slds />
+    <apex:stylesheet value="{!$Resource.EinsteinCSS}" />
+    
+    <!--Modal-->
+    <div id="mdlStatus" style="display:none">
+        <section role="dialog" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 id="mdlHeader" class="slds-text-heading_medium slds-hyphenate"></h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium slds-p-bottom_x-large">
+                    <p id="statusMsg"></p>
+                    <div id="mdlSpinner">
+                        <div role="status" class="slds-spinner slds-spinner_brand slds-spinner_medium slds-m-top_x-large">
+                            <span class="slds-assistive-text">Loading</span>
+                            <div class="slds-spinner__dot-a"></div>
+                            <div class="slds-spinner__dot-b"></div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button id="btnClose" class="slds-button slds-button_neutral">Continue...</button>
+                </footer>
+            </div>
+        </section>
+        <div id="mdlBackDrop" class="slds-backdrop slds-backdrop_open"></div>
+    </div>
+    
+    <!--Page Header-->
+    <div class="slds-page-header slds-m-bottom_large">
+        <div class="slds-media">
+            <div class="slds-media__figure">
+                <span class="slds-icon_container slds-icon-standard-account">
+                    <svg class="slds-icon" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/custom-sprite/svg/symbols.svg#custom9')}"></use>
+                    </svg>
+                </span>
+            </div>
+            <div class="slds-media__body">
+                <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Einstein Intent API">Salesforce Einstein Intent API</h1>
+                <p class="slds-text-body_small slds-line-height_reset">Try it out</p>
+            </div>
+        </div>
+    </div>
+    
+    <!--Intro-->
+    <div class="slds-box slds-theme_default slds-m-bottom_medium">
+        <p>
+            In simple words, Einstein Intent API helps you to identify the notion in a block of text. For example, in a block of text like this - <em>"I had purchased a phone from your outlet last week. It was all fine till yesterday. Today morning when I woke up, I found that the screen has blacked out and stopped working. What could be the cause ?"</em>, the intent could be identified as a "<strong>Technical Issue</strong>" or "<strong>Fault</strong>". In a broader sense, this could be thought of as a <strong>Case</strong>. Thus with the help of Einstein Intent, we could decipher the Comments of a Case and assign it to a <strong>Service Engineer</strong> or if it's a <strong>Product Inquiry</strong> then assign it to a Sales Rep and so on.
+        </p>
+    </div>
+    
+    <!--Step 1-->
+    <div class="slds-section-title--divider"><span class="slds-badge">1</span> Upload the Dataset</div>
+    <div class="slds-form--stacked slds-p-around--medium slds-m-bottom--x-small">
+        <div class="slds-box slds-theme_default slds-m-bottom_medium">
+            <p>
+                In our use case, the CSV(used for creating the dataset) will contain <strong>Product Inquiry</strong> questions and <strong>Technical Issues</strong> raised by a typical customer who had previously purchased a Cell Phone. Here is the link to the CSV - <a target="_blank" href="https://drive.google.com/open?id=0B5MdygaRk2DTVnExWnROMjcxdVU">https://drive.google.com/open?id=0B5MdygaRk2DTVnExWnROMjcxdVU</a>.
+            </p>
+        </div>
+        <div class="slds-form-element">
+            <div class="slds-form-element__control">
+                <button type="button" id="btnUploadDS" class="slds-button slds-button_brand">Upload Sample Dataset</button>
+                
+                <button type="button" id="btnUploadMyDS" class="slds-button slds-button_brand">Upload My Dataset</button>
+            </div>
+            <div class="slds-form-element__control">
+            </div>
+        </div>
+    </div>
+    
+    <!--Step 2-->
+    <div class="slds-section-title--divider"><span class="slds-badge">2</span> Create the Model and Train</div>
+    <div class="slds-form--stacked slds-p-around--medium slds-m-bottom--x-small">
+        <div class="slds-form-element">
+            <div class="slds-form-element__control">
+                <div class="slds-box slds-theme_default slds-m-bottom_medium">
+                    <p>
+                        This is all about creating a <strong>Model</strong> from the uploaded Dataset and then <strong>Training</strong> the AI.
+                    </p>
+                </div>
+                <button type="button" id="btnTrainDS" class="slds-button slds-button_brand" disabled="true">Train</button>
+            </div>
+        </div>
+    </div>
+    
+    <!--Step 3-->
+    <div class="slds-section-title--divider"><span class="slds-badge">3</span> Enter Text for Prediction</div>
+    <div class="slds-form--stacked slds-p-around--medium slds-m-bottom--x-small">
+        <div class="slds-form-element">
+            <div class="slds-form-element__control">
+                <textarea id="txtTextToIntent" class="slds-input slds-m-bottom_medium">My phone's screen has stopped working.</textarea>
+                <button type="button" id="btnPredict" class="slds-button slds-button_brand" disabled="true">Predict</button>
+            </div>
+        </div>
+    </div>
+    
+    <!--Scripts-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{!$Resource.FindIntentJS}"></script>
+    <script>
+        var config = {
+            intentDatasetFolderId   : "{!$Setup.Einstein_API_Settings__c.Intent_Dataset_Folder_Id__c}",
+            accessToken             : "{!accessToken}"
+        };
+        
+        FindIntent.init( config );
+        
+        var onApiLoad = function() {
+            FindIntent.helpers.loadPickerModule();
+        };
+    </script>
+    <script src="https://apis.google.com/js/api.js?onload=onApiLoad"></script>
+</apex:page>

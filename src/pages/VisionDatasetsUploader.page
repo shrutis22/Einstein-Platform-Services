@@ -1,0 +1,11 @@
+<apex:page standardController="Vision_Dataset__c" showHeader="false" sidebar="false" lightningStylesheets="true">
+    <style>
+        .cxfeedinnerwrapper {
+            display : none;
+        }
+        .chatterPublisherFileActionContainerLeft {
+            display : none;
+        }
+    </style>
+    <chatter:feed entityId="{!$CurrentPage.parameters.dsid}"></chatter:feed>
+</apex:page>

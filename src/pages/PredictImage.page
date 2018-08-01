@@ -59,15 +59,8 @@
                 </span>
             </div>
             <div class="slds-media__body">
-                <div class="slds-grid">
-                    <div class="slds-col">
-                        <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Einstein Vision API">Salesforce Einstein Vision API</h1>
-                        <p class="slds-text-body_small slds-line-height_reset">Try it out</p>
-                    </div>
-                    <div class="slds-col slds-text-align--right">
-                        <button type="button" id="btnLoadSettings" style="{!IF(ISBLANK($Setup.Einstein_API_Settings__c.Registered_Email__c),'','display:none')}" class="slds-button slds-button_brand">Load Settings</button>
-                    </div>
-                </div>
+                <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Einstein Vision API">Salesforce Einstein Vision API</h1>
+                <p class="slds-text-body_small slds-line-height_reset">Try it out</p>
             </div>
         </div>
     </div>
@@ -119,15 +112,9 @@
         </div>
         <div class="slds-form-element">
             <div class="slds-form-element__control">
-                <apex:outputPanel rendered="{!ISBLANK($Setup.Einstein_API_Settings__c.Registered_Email__c)}" layout="none">
-                    <button type="button" id="btnUploadMyDS" class="slds-button slds-button_brand" disabled="true">Upload My Dataset</button>
-                </apex:outputPanel>
-                
-                <apex:outputPanel rendered="{!NOT(ISBLANK($Setup.Einstein_API_Settings__c.Registered_Email__c))}" layout="none">
-                    <button type="button" id="btnUploadMyDS" class="slds-button slds-button_brand">Upload My Dataset</button>
-                </apex:outputPanel>
+                <button type="button" id="btnUploadMyDS" class="slds-button slds-button_brand">Upload My Dataset</button>
             </div>
-            <div class="slds-form-element__control"> 
+            <div class="slds-form-element__control">
             </div>
         </div>
     </div>
@@ -143,7 +130,6 @@
                     </p>
                 </div>
                 <button type="button" id="btnTrainDS" class="slds-button slds-button_brand" disabled="true">Start Training</button>
-                <button class="slds-button slds-button_brand" id="btnSaveModel" type="button" disabled="true">Save Model</button>
             </div>
         </div>
     </div>
@@ -165,14 +151,13 @@
                             <label class="slds-form-element__label" for="slctModel">Select a Pre-existing Model</label>
                             <div class="slds-form-element__control">
                                 <select id="slctModel" class="slds-select">
-                                    <option value="0">--Select--</option>
                                     <apex:repeat value="{!trainedModels}" var="model">
                                         <option value="{!model.Model_Id__c}">{!model.Name}</option>
                                     </apex:repeat>
                                 </select>
                             </div>
                         </div>
-                        <button type="button" id="btnPredictExistModel" class="slds-button slds-button_brand slds-m-top_x-small" disabled="true">Upload Sample Image</button>
+                        <button type="button" id="btnPredictExistModel" class="slds-button slds-button_brand slds-m-top_x-small">Upload Sample Image</button>
                     </div>
                 </div>
             </div>
@@ -184,7 +169,7 @@
     <script src="{!$Resource.PredictImageJS}"></script>
     <script>
         var config = {
-            visionUploaderLink : "{!$Page.VisionUploader}"
+            visionUploaderLink : "{!$Page.VisionDatasetsUploader}"
         };
         
         PredictImage.init( config );

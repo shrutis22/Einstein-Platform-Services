@@ -1,0 +1,93 @@
+<apex:page controller="FindSentimentController" standardStylesheets="false" sidebar="false">
+    <apex:slds />
+    
+    <div class="slds-page-header">
+        <div class="slds-media">
+            <div class="slds-media__figure">
+                <span class="slds-icon_container slds-icon-standard-feedback">
+                    <svg class="slds-icon" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#feedback')}"></use>
+                    </svg>
+                </span>
+            </div>
+            <div class="slds-media__body">
+                <h1 class="slds-page-header__title slds-truncate slds-align-middle">Salesforce Einstein Sentiment API</h1>
+                <p class="slds-text-body_small slds-line-height_reset">Try it out</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="slds-form-element slds-m-top_medium">
+        <label class="slds-form-element__label" for="txt">Enter the Text to Analyse</label>
+        <div class="slds-form-element__control slds-m-top_xx-small">
+            <textarea id="txtTextToAnalyse" class="slds-input">What can I say about this place. The staff of the restaurant is nice and the eggplant is not bad. Apart from that, very uninspired food, lack of atmosphere and too expensive. I am a staunch vegetarian and was sorely disappointed with the veggie options on the menu. Will be the last time I visit, I recommend others to avoid.</textarea>
+        </div>
+    </div>
+    
+    <button id="btnFindSentiment" class="slds-button slds-button_brand slds-m-top_medium" onclick="FindSentiment.eventHandlers.findSentiment()">Find Sentiment</button>
+    
+    <div class="slds-m-top_large">
+        Curious to learn more ?!?
+        <a href="https://shrutisridharan.wordpress.com/2017/08/22/sentiment-analysis-using-salesforce-einstein/" target="_blank">
+            Click here
+        </a>
+    </div>
+    
+    <script type="text/javascript">
+        var FindSentiment = {
+            helpers : {
+                enableButton : function( isEnabled ) {
+                    document.getElementById( "btnFindSentiment" ).disabled = !isEnabled;
+                    
+                    document.getElementById( "btnFindSentiment" ).innerHTML = isEnabled == true ? "Find Sentiment" : "Finding Sentiment...";
+                }
+            },
+            actions : {
+                findSentiment : function( text ) {
+                    FindSentimentController.findSentiment(
+                        text,
+                        function( result, event ) {
+                            window[ result.probabilities[0].label ] = result.probabilities[0].probability;
+                            window[ result.probabilities[1].label ] = result.probabilities[1].probability;
+                            window[ result.probabilities[2].label ] = result.probabilities[2].probability;
+                                
+                            var sentiment = ""; 
+                            if( negative > positive && negative > neutral ) { 
+                                sentiment = "Sorry! Einstein says it's Negative."; 
+                            } 
+                            else if( positive > negative && positive > neutral ) { 
+                                sentiment = "Yay! Einstein says it's Positive."; 
+                            } 
+                            else { 
+                                sentiment = "Oopsie! That kinda looks Neutral."; 
+                            } 
+                            
+                            alert( sentiment );
+                            
+                            FindSentiment.helpers.enableButton( true );
+                        }
+                    );
+                }
+            },
+            eventHandlers : {
+                findSentiment : function() {
+                    var text = document.getElementById( "txtTextToAnalyse" ).value;
+                    
+                    FindSentiment.actions.findSentiment( text );
+                    
+                    FindSentiment.helpers.enableButton( false );
+                }
+            },
+            init : function() {}
+        };
+    </script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-105195244-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+</apex:page>
