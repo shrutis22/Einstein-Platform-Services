@@ -14,6 +14,7 @@
         <members>PredictImageController</members>
         <members>PredictionResponse</members>
         <members>SentimentAnalysisResponse</members>
+        <members>TesselServices</members>
         <members>TrainDatasetResponse</members>
         <members>TrainingStatusResponse</members>
         <members>VisionTrainingStatusResponse</members>
