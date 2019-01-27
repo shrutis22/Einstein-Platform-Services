@@ -31,7 +31,6 @@
         <name>CustomApplication</name>
     </types>
     <types>
-        <members>Activity.Sentiment__c</members>
         <members>Einstein_API_Settings__c.Intent_Dataset_CSV__c</members>
         <members>Einstein_API_Settings__c.Intent_Dataset_Details_Endpoint__c</members>
         <members>Einstein_API_Settings__c.Intent_Dataset_Folder_Id__c</members>
